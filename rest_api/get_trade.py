@@ -9,7 +9,7 @@ from credentials import api_key
 from general_tools import time_convert
 
 
-# noinspection SpellCheckingInspection,PyShadowingNames
+# noinspection SpellCheckingInspection,PyShadowingNames,DuplicatedCode
 class GetTrade:
     def __init__(self, exches: list, pairs: list, start_time, end_time,
                  interval='1d', aclass='spot', time_label='timestamp'):
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     params = {
         'exches': ['cbse', 'krkn'],
         'pairs': ['btc-usd', 'eth-usd'],
-        'start_time': '2023-02-10T06:00:00Z',
+        'start_time': '2023-02-01T06:00:00Z',
         'end_time': '2023-02-10T12:30:00Z',
         'aclass': 'spot',
         'time_label': 'timestamp',
@@ -156,3 +156,4 @@ if __name__ == '__main__':
     df = data.get_trade()
     print(df)
     df.to_csv('trade_test.csv')
+

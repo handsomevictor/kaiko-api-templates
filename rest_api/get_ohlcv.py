@@ -112,12 +112,11 @@ class GetOhlcv:
         return self.get_ohlcv_conc_pair()
 
 
-
 if __name__ == '__main__':
     params = {
         'exches': ['cbse', 'krkn'],
         'pairs': ['btc-usd', 'eth-usd'],
-        'start_time': '2023-01-10T12:20:00Z',
+        'start_time': '2022-12-10T12:20:00Z',
         'end_time': '2023-02-10T12:30:00Z',
         'interval': '1m',
         'aclass': 'spot',
@@ -127,4 +126,4 @@ if __name__ == '__main__':
     data = GetOhlcv(**params)
     df = data.get_ohlcv()
     print(df)
-    df.to_csv('test.csv')
+    df.to_csv('ohlcv_test.csv')
