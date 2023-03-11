@@ -159,7 +159,7 @@ def aggregated_quote_request(channel: grpc.Channel):
 
 def run():
     credentials = grpc.ssl_channel_credentials(root_certificates=None)
-    call_credentials = grpc.access_token_call_credentials('db1ea02b73a73db7d05c291ae0d555a2')
+    call_credentials = grpc.access_token_call_credentials(os.environ['KAIKO_API_KEY'])
     composite_credentials = grpc.composite_channel_credentials(credentials, call_credentials)
     channel = grpc.secure_channel('gateway-v0-grpc.kaiko.ovh', composite_credentials)
 
