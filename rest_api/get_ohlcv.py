@@ -114,11 +114,11 @@ class GetOhlcv:
 
 if __name__ == '__main__':
     params = {
-        'exches': ['cbse', 'krkn'],
-        'pairs': ['btc-usd', 'eth-usd'],
-        'start_time': '2022-12-10T12:20:00Z',
-        'end_time': '2023-02-10T12:30:00Z',
-        'interval': '1m',
+        'exches': ['blc2'],
+        'pairs': ['reth-eth'],
+        'start_time': '2023-02-18T12:00:00Z',
+        'end_time': '2023-02-22T23:00:00Z',
+        'interval': '1h',
         'aclass': 'spot',
         'time_label': 'timestamp',
     }
@@ -127,3 +127,10 @@ if __name__ == '__main__':
     df = data.get_ohlcv()
     print(df)
     df.to_csv('ohlcv_test.csv')
+
+    import matplotlib.pyplot as plt
+    # line chart
+    df.reset_index(inplace=True)
+    plt.plot(df['timestamp'], df['close'], label='close')
+    plt.show()
+
