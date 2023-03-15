@@ -114,10 +114,10 @@ class GetOhlcv:
 
 if __name__ == '__main__':
     params = {
-        'exches': ['blc2'],
-        'pairs': ['reth-eth'],
-        'start_time': '2023-02-18T12:00:00Z',
-        'end_time': '2023-02-22T23:00:00Z',
+        'exches': ['binc'],
+        'pairs': ['btc-usdt'],
+        'start_time': '2023-02-21T00:00:00Z',
+        'end_time': '2023-02-22T00:00:00Z',
         'interval': '1h',
         'aclass': 'spot',
         'time_label': 'timestamp',
@@ -126,7 +126,7 @@ if __name__ == '__main__':
     data = GetOhlcv(**params)
     df = data.get_ohlcv()
     print(df)
-    df.to_csv('ohlcv_test.csv')
+    df.to_csv('ohlcv_test_binc.csv')
 
     import matplotlib.pyplot as plt
     # line chart
