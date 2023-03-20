@@ -1,6 +1,7 @@
 @author: Victor
 
-[disclaimer] These are some templates that the auther uses for himself. Kaiko does not provide any templates for
+[disclaimer] These are some templates of Kaiko REST API that the auther uses for himself. Kaiko does not provide any 
+templates for
 REST API. Please modify them to your needs. If you have any questions, please contact Kaiko support. All the potential
 problems caused by using these scripts are the responsibility of the user, including but not limited to the loss of
 precision in using Pandas etc. 
