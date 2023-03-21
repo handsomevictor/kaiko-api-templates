@@ -1,4 +1,4 @@
-@author: Victor - 
+@author: Victor
 
 [disclaimer] These are some templates of Kaiko REST API that the auther uses for himself. Kaiko does not provide any 
 templates for
