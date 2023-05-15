@@ -147,7 +147,7 @@ if __name__ == '__main__':
         'exches': ['cbse', 'krkn'],
         'pairs': ['btc-usd', 'eth-usd'],
         'start_time': '2023-02-01T06:00:00Z',
-        'end_time': '2023-02-10T12:30:00Z',
+        'end_time': '2023-02-02T12:30:00Z',
         'aclass': 'spot',
         'time_label': 'timestamp',
     }
