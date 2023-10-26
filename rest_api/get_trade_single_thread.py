@@ -8,7 +8,7 @@ For Getting Trades Data, several steps:
 import requests
 import pandas as pd
 
-api_key = 'xxxxxxx'  # Replace it with your own key
+api_key = 'xxxxx'  # Replace it with your own key
 
 
 def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label='timestamp'):
@@ -22,6 +22,7 @@ def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label
 
     response = requests.get(url_ohlcv, headers=headers)
     res = response.json()
+
     res_data = res['data']
 
     # Loop for pagination, does not retry if there is an error
@@ -47,9 +48,9 @@ def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label
 
 
 if __name__ == '__main__':
-    start_time_str = '2020-01-01T00:00:00.000Z'
-    end_time_str = '2020-01-02T00:00:00.000Z'
-    aclass = 'spot'
+    start_time_str = '2023-05-01T00:00:00.000Z'
+    end_time_str = '2023-05-10T00:00:00.000Z'
+    aclass = 'perpetual-future'
     time_label = 'timestamp'
     exch = 'binc'
     pair = 'btc-usdt'
