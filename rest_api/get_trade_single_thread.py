@@ -8,7 +8,7 @@ For Getting Trades Data, several steps:
 import requests
 import pandas as pd
 
-from credentials import api_key
+api_key = 'xxxxxxx'  # Replace it with your own key
 
 
 def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label='timestamp'):
