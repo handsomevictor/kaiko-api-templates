@@ -49,7 +49,7 @@ def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label
 
 if __name__ == '__main__':
     start_time_str = '2023-05-01T00:00:00.000Z'
-    end_time_str = '2023-05-10T00:00:00.000Z'
+    end_time_str = '2023-05-01T02:00:00.000Z'
     aclass = 'perpetual-future'
     time_label = 'timestamp'
     exch = 'binc'
