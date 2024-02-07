@@ -114,11 +114,11 @@ class GetOhlcv:
 
 if __name__ == '__main__':
     params = {
-        'exches': ['binc'],
+        'exches': ['huob'],
         'pairs': ['btc-usdt'],
-        'start_time': '2023-02-21T00:00:00Z',
-        'end_time': '2023-02-22T00:00:00Z',
-        'interval': '1h',
+        'start_time': '2023-01-01T00:00:00Z',
+        'end_time': '2024-01-01T00:00:00Z',
+        'interval': '1s',
         'aclass': 'spot',
         'time_label': 'timestamp',
     }
@@ -126,11 +126,11 @@ if __name__ == '__main__':
     data = GetOhlcv(**params)
     df = data.get_ohlcv()
     print(df)
-    df.to_csv('ohlcv_test_binc.csv')
-
-    import matplotlib.pyplot as plt
-    # line chart
-    df.reset_index(inplace=True)
-    plt.plot(df['timestamp'], df['close'], label='close')
-    plt.show()
-
+    df.to_csv('ohlcvvwap_binc.csv')
+    #
+    # import matplotlib.pyplot as plt
+    # # line chart
+    # df.reset_index(inplace=True)
+    # plt.plot(df['timestamp'], df['close'], label='close')
+    # plt.show()
+    #
