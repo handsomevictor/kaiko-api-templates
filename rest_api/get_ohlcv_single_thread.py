@@ -1,7 +1,6 @@
+import os
 import requests
 import pandas as pd
-
-from credentials import api_key
 
 
 def get_ohlcv_single(exch, pair, start_time, end_time, interval='1d', aclass='spot', time_label='timestamp'):
@@ -10,7 +9,7 @@ def get_ohlcv_single(exch, pair, start_time, end_time, interval='1d', aclass='sp
 
     headers = {
         'Accept': 'application/json',
-        'X-Api-Key': api_key,
+        'X-Api-Key': os.environ['KAIKO_API_KEY'],
     }
 
     response = requests.get(url_ohlcv, headers=headers)
@@ -40,12 +39,13 @@ def get_ohlcv_single(exch, pair, start_time, end_time, interval='1d', aclass='sp
 
 
 if __name__ == '__main__':
-    start_time_str = '2020-01-01T00:00:00.000Z'
-    end_time_str = '2020-01-02T00:00:00.000Z'
-    interval = '1h'
+    start_time_str = '2024-09-10T00:00:00.000Z'
+    end_time_str = '2024-09-20T00:00:00.000Z'
+    interval = '1m'
     aclass = 'spot'
     time_label = 'timestamp'
-    exch = 'binc'
-    pair = 'btc-usdt'
+    exch = 'usp3'
+    pair = 'dai-usdc'
     df = get_ohlcv_single(exch, pair, start_time_str, end_time_str, interval, aclass, time_label)
     print(df)
+    df.to_csv(f'{exch}_{pair}_{start_time_str}_{end_time_str}.csv')
