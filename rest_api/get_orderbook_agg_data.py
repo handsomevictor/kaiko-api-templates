@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 
 
-def get_ob_agg_single(exch, pair, start_time, end_time, interval='1d', aclass='spot', slippage=0.1):
+def get_ob_agg_single(exch, pair, start_time, end_time, interval='1d', aclass='spot', slippage=0):
     url_ob = (f"https://us.market-api.kaiko.io/v2/data/order_book_snapshots.v1/exchanges/{exch}/{aclass}/{pair}"
               f"/ob_aggregations/full?page_size=100&interval={interval}&slippage={slippage}"
               f"&start_time={start_time}&end_time={end_time}")
@@ -27,6 +27,7 @@ def get_ob_agg_single(exch, pair, start_time, end_time, interval='1d', aclass='s
             break
     try:
         df_ = pd.DataFrame.from_dict(res_data)
+        df_['poll_timestamp'] = pd.to_datetime(df_['poll_timestamp'], unit='ms')
         return df_
 
     except KeyError:
@@ -35,12 +36,13 @@ def get_ob_agg_single(exch, pair, start_time, end_time, interval='1d', aclass='s
 
 
 if __name__ == '__main__':
-    start_time_str = '2024-10-29T14:00:00.000Z'
+    start_time_str = '2024-10-29T00:00:00.000Z'
     end_time_str = '2024-10-29T15:00:00.000Z'
     interval = '1s'
+    slippage = 0.001
     aclass = 'spot'
     time_label = 'timestamp'
     exch = 'gmni'
     pair = 'eth-usd'
-    df = get_ob_agg_single(exch, pair, start_time_str, end_time_str, interval, aclass)
+    df = get_ob_agg_single(exch, pair, start_time_str, end_time_str, interval, aclass, slippage=slippage)
     df.to_csv(f'{exch}_{pair}_{start_time_str}_{end_time_str}.csv')

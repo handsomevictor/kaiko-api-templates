@@ -48,4 +48,4 @@ if __name__ == '__main__':
     pair = 'dai-usdc'
     df = get_ohlcv_single(exch, pair, start_time_str, end_time_str, interval, aclass, time_label)
     print(df)
-    df.to_csv(f'{exch}_{pair}_{start_time_str}_{end_time_str}.csv')
+    # df.to_csv(f'{exch}_{pair}_{start_time_str}_{end_time_str}.csv')
