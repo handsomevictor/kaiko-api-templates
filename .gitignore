@@ -1,3 +1,17 @@
 *.DS_Store*
 *Thumbs.db*
 /__pycache__/
+
+# Ignore .idea folder (for JetBrains IDEs like PyCharm)
+.idea/
+
+# Ignore Python bytecode cache directories
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments (if any)
+venv/
+env/
+
+# Ignore other potential system or editor files
+.DS_Store
