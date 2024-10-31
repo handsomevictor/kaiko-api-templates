@@ -1,3 +1,4 @@
+import os
 import requests
 import pandas as pd
 import datetime
@@ -5,7 +6,6 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from itertools import repeat
 from tqdm import tqdm
 
-from credentials import api_key
 from general_tools import time_convert
 
 
@@ -42,7 +42,7 @@ class GetOhlcv:
 
         headers = {
             'Accept': 'application/json',
-            'X-Api-Key': api_key,
+            'X-Api-Key': os.environ['KAIKO_API_KEY'],
         }
 
         response = requests.get(url_ohlcv, headers=headers)

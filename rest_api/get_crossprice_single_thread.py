@@ -1,15 +1,15 @@
 """
 This is for getting Cross Price V2 data from Kaiko API using single thread
 """
-
+import os
 import requests
 import pandas as pd
 
-api_key = "xxxx"  # Replace it with your own key
+api_key = os.environ['KAIKO_API_KEY']
 
 
 def get_crossprice_single(base, quote, start_time, end_time, interval, time_label='timestamp',
-                     extrapolate_missing_values='true'):
+                          extrapolate_missing_values='true'):
     url_ohlcv = (f"https://us.market-api.kaiko.io/v2/data/trades.v2/spot_exchange_rate"
                  f"/{base}/{quote}"
                  f"?interval={interval}&"

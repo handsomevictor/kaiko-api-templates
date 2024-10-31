@@ -1,5 +1,5 @@
-import requests
 import os
+import requests
 import pandas as pd
 
 kaiko_api_key = os.environ['KAIKO_API_KEY']

@@ -1,13 +1,15 @@
-import requests
-import pandas as pd
-import datetime
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
-from itertools import repeat
-from tqdm import tqdm
 import os
+import requests
+import datetime
+import pandas as pd
+from tqdm import tqdm
 
-from credentials import api_key
+from itertools import repeat
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+
 from general_tools import time_convert
+
+api_key = os.environ['KAIKO_API_KEY']
 
 
 def get_ohlcv_single(exch, pair, start_time, end_time, interval='1d', aclass='spot', time_label='timestamp'):

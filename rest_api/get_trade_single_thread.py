@@ -4,11 +4,11 @@ For Getting Trades Data, several steps:
 1. Go to our instrument page, and find the ticker that you want: https://instruments.kaiko.com/#/instruments
 2. Run the script, and save to local etc.
 """
-
+import os
 import requests
 import pandas as pd
 
-api_key = 'xxxxx'  # Replace it with your own key
+api_key = os.getenv('KAIKO_API_KEY')
 
 
 def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label='timestamp'):
@@ -34,17 +34,14 @@ def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label
         else:
             break
     try:
-        df_ = pd.DataFrame.from_dict(res_data, dtype='float')
+        df_ = pd.DataFrame.from_dict(res_data)
         df_[time_label] = pd.to_datetime(df_[time_label], unit='ms')
-        df_.index = df_[time_label]
-        df_ = df_.drop(columns=time_label)
         df_['pair'] = pair
         df_['exchange'] = exch
         return df_
 
     except KeyError:
-        df_ = pd.DataFrame(columns=['pair', 'exchange', 'open', 'high', 'low', 'close', 'volume', 'vwap'])
-        return df_
+        return pd.DataFrame()
 
 
 if __name__ == '__main__':

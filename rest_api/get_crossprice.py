@@ -1,11 +1,12 @@
-import requests
-import pandas as pd
-import datetime
 import os
-from concurrent.futures import ThreadPoolExecutor
-from itertools import repeat
-from tqdm import tqdm
 import time
+import requests
+import datetime
+import pandas as pd
+from tqdm import tqdm
+
+from itertools import repeat
+from concurrent.futures import ThreadPoolExecutor
 
 
 kaiko_api_key = os.environ['KAIKO_API_KEY']
@@ -16,7 +17,8 @@ def get_crossprice_one_instrument_one_periods(base, quote, interval, extrapolate
     url = ('https://us.market-api.kaiko.io/v2/data/trades.v2/spot_exchange_rate'
            f'/{base}/{quote}?interval={interval}&extrapolate_missing_values={extrapolate_missing_values}'
            f'&start_time={start_time}&end_time={end_time}&page_size=100')
-    headers = {"X-Api-Key": kaiko_api_key, "Accept": "application/json", "Accept-Encoding": "gzip"}
+    headers = {"X-Api-Key": kaiko_api_key,
+               "Accept": "application/json", "Accept-Encoding": "gzip"}
 
     try:
         a = requests.get(url, headers=headers, stream=True).json()["data"]
