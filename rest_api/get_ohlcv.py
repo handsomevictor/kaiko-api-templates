@@ -36,7 +36,7 @@ class GetOhlcv:
         # when more than one exch or pair & interval is using minutes or seconds, use multi threads for spliting dates
 
     @staticmethod
-    def get_ohlcv_single(exch, pair, start_time, end_time, interval='1d', aclass='spot', time_label='timestamp'):
+    def get_ohlcv_single(exch, pair, start_time, end_time, interval='1d', aclass='spot'):
         url_ohlcv = f"https://us.market-api.kaiko.io/v2/data/trades.v1/exchanges/{exch}/{aclass}/{pair}/aggregations/" \
                     f"count_ohlcv_vwap?start_time={start_time}&end_time={end_time}&interval={interval}&page_size=100000"
 
@@ -58,10 +58,7 @@ class GetOhlcv:
             else:
                 break
         try:
-            df_ = pd.DataFrame.from_dict(res_data, dtype='float')
-            df_[time_label] = pd.to_datetime(df_[time_label], unit='ms')
-            df_.index = df_[time_label]
-            df_ = df_.drop(columns=time_label)
+            df_ = pd.DataFrame.from_dict(res_data)
             df_['pair'] = pair
             df_['exchange'] = exch
             return df_
@@ -81,13 +78,13 @@ class GetOhlcv:
                 res_temp = list(tqdm(pool.map(self.get_ohlcv_single, exches, repeat(pair),
                                               repeat(self.start_time_str), repeat(self.end_time_str),
                                               repeat(self.interval),
-                                              repeat(self.aclass), repeat(self.time_label)),
+                                              repeat(self.aclass)),
                                      total=len(self.pairs)))
             else:
                 res_temp = list(pool.map(self.get_ohlcv_single, exches, repeat(pair),
                                          repeat(self.start_time_str), repeat(self.end_time_str),
                                          repeat(self.interval),
-                                         repeat(self.aclass), repeat(self.time_label)))
+                                         repeat(self.aclass)))
 
             for df in res_temp:
                 res = pd.concat([res, df])

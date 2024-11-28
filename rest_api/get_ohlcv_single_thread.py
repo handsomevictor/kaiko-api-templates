@@ -25,10 +25,8 @@ def get_ohlcv_single(exch, pair, start_time, end_time, interval='1d', aclass='sp
         else:
             break
     try:
-        df_ = pd.DataFrame.from_dict(res_data, dtype='float')
+        df_ = pd.DataFrame.from_dict(res_data)
         df_[time_label] = pd.to_datetime(df_[time_label], unit='ms')
-        df_.index = df_[time_label]
-        df_ = df_.drop(columns=time_label)
         df_['pair'] = pair
         df_['exchange'] = exch
         return df_

@@ -36,12 +36,9 @@ def get_crossprice_single(base, quote, start_time, end_time, interval, time_labe
         else:
             break
     try:
-        df_ = pd.DataFrame.from_dict(res_data, dtype='float')
+        df_ = pd.DataFrame.from_dict(res_data)
         df_[time_label] = pd.to_datetime(df_[time_label], unit='ms')
-        df_.index = df_[time_label]
-        df_ = df_.drop(columns=time_label)
         df_['pair'] = f'{base}-{quote}'
-
         return df_
 
     except KeyError:
