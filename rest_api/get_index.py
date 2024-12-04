@@ -10,12 +10,12 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 def get_rates_data_single(rate_ticker, start_time, end_time):
-    url_rates = ('https://us.market-api.kaiko.io/v2/data/index.v1/digital_asset_rates_price_public'
+    url_rates = ('https://us.market-api.kaiko.io/v2/data/index.v1/digital_asset_rates_price'
                  f'/{rate_ticker}'
                  '?parameters=true'
                  f'&start_time={start_time}'
                  f'&end_time={end_time}'
-                 '&detail=false&page_size=20000')
+                 '&detail=false&page_size=5000')
     print(url_rates)
     headers = {
         'Accept': 'application/json',
