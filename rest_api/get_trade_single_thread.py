@@ -11,8 +11,8 @@ import pandas as pd
 api_key = os.getenv('KAIKO_API_KEY')
 
 
-def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label='timestamp'):
-    url_ohlcv = f"https://us.market-api.kaiko.io/v2/data/trades.v1/exchanges/{exch}/{aclass}/{pair}/trades/" \
+def get_trades_single(exch, pair, start_time, end_time, aclass='spot', time_label='timestamp'):
+    url_trades = f"https://us.market-api.kaiko.io/v2/data/trades.v1/exchanges/{exch}/{aclass}/{pair}/trades/" \
                 f"?start_time={start_time}&end_time={end_time}&page_size=100000"
 
     headers = {
@@ -20,7 +20,7 @@ def get_ohlcv_single(exch, pair, start_time, end_time, aclass='spot', time_label
         'X-Api-Key': api_key,
     }
 
-    response = requests.get(url_ohlcv, headers=headers)
+    response = requests.get(url_trades, headers=headers)
     res = response.json()
 
     res_data = res['data']
@@ -51,6 +51,6 @@ if __name__ == '__main__':
     time_label = 'timestamp'
     exch = 'binc'
     pair = 'btc-usdt'
-    df = get_ohlcv_single(exch, pair, start_time_str, end_time_str, aclass, time_label)
+    df = get_trades_single(exch, pair, start_time_str, end_time_str, aclass, time_label)
     print(df.columns)
     print(df)
