@@ -8,8 +8,8 @@ from google.protobuf.json_format import MessageToJson
 from kaikosdk import sdk_pb2_grpc
 from kaikosdk.core import instrument_criteria_pb2
 from kaikosdk.stream.aggregates_ohlcv_v1 import request_pb2 as pb_ohlcv
-from kaikosdk.stream.aggregates_direct_exchange_rate_v1 import request_pb2 as pb_direct_exchange_rate
-from kaikosdk.stream.aggregates_spot_exchange_rate_v1 import request_pb2 as pb_spot_exchange_rate
+# from kaikosdk.stream.aggregates_direct_exchange_rate_v1 import request_pb2 as pb_direct_exchange_rate
+# from kaikosdk.stream.aggregates_spot_exchange_rate_v1 import request_pb2 as pb_spot_exchange_rate
 from kaikosdk.stream.aggregates_vwap_v1 import request_pb2 as pb_vwap
 from kaikosdk.stream.market_update_v1 import request_pb2 as pb_market_update
 from kaikosdk.stream.market_update_v1 import commodity_pb2 as pb_commodity
@@ -115,9 +115,9 @@ def trades_request(channel: grpc.Channel):
             # Globbing patterns are also supported on all fields. See http://sdk.kaiko.com/#instrument-selection for all supported patterns
             responses = stub.Subscribe(pb_trades.StreamTradesRequestV1(
                 instrument_criteria=instrument_criteria_pb2.InstrumentCriteria(
-                    exchange="binc",
-                    instrument_class="spot",
-                    code="btc-usdt"
+                    exchange="cbse,drbt,huob,krkn,mexc,okex",
+                    instrument_class="future,spot,perpetual-future",
+                    code="*"
                 )
             ))
             for response in responses:

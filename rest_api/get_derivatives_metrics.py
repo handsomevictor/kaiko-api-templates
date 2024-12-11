@@ -36,31 +36,38 @@ def get_derivatives_metrics(url_derivatives_metrics):
 
 
 if __name__ == '__main__':
-    exch = 'binc'
-    start_time = '2024-06-10T00:00:00.000Z'
-    end_time = '2024-06-10T01:00:00.000Z'
-    base_assets = 'usdc'
+    exch = 'drbt'
+    start_time = '2024-12-09T00:00:00.000Z'
+    end_time = '2024-12-10T00:00:00.000Z'
+    interval = '1h'
+    base_assets = 'btc'
     quote_assets = 'usdt'
     instrument_class = 'perpetual-future'
-    instrument = "usdc-usdt"  # This info can be found in derivatives reference result for options
+    instrument = "btc-usdt"  # This info can be found in derivatives reference result for options
 
     url_derivatives_reference = (f"https://us.market-api.kaiko.io/v2/data/derivatives.v2/reference"
                                  f"?exchange={exch}"
                                  f"&instrument_class={instrument_class}"
                                  f"&base_assets={base_assets}"
-                                 f"&quote_assets={quote_assets}")
-
+                                 f"&quote_assets={quote_assets}"
+                                 # f"&start_time={start_time}"  # if using start_time or end_time, don't use page_size
+                                 # f"&end_time={end_time}"
+                                 f"&page_size=1000")
+    print(url_derivatives_reference)
     url_derivatives_risk = ("https://us.market-api.kaiko.io/v2/data/derivatives.v2/risk"
                             f"?exchange={exch}"
                             f"&instrument_class={instrument_class}"
                             f"&instrument={instrument}"
-                            f"&page_size=10")
+                            f"&page_size=1000"
+                            f"&start_time={start_time}"
+                            f"&end_time={end_time}"
+                            f"&interval={interval}")
 
     url_derivatives_price = ("https://us.market-api.kaiko.io/v2/data/derivatives.v2/price"
                              f"?exchange={exch}"
                              f"&instrument_class={instrument_class}"
                              f"&instrument={instrument}"
-                             "&page_size=10"
+                             "&page_size=1000"
                              f"&start_time={start_time}"
                              f"&end_time={end_time}")
 
