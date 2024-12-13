@@ -19,7 +19,7 @@ def get_rates_data_single(rate_ticker, start_time, end_time):
     print(url_rates)
     headers = {
         'Accept': 'application/json',
-        'X-Api-Key': 'de1cf5a8a765861844e71a73a10203f8',
+        'X-Api-Key': os.environ['KAIKO_API_KEY'],
     }
     try:
         response = requests.get(url_rates, headers=headers)
