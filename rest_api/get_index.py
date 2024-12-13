@@ -19,7 +19,7 @@ def get_rates_data_single(rate_ticker, start_time, end_time):
     print(url_rates)
     headers = {
         'Accept': 'application/json',
-        'X-Api-Key': os.environ['KAIKO_API_KEY'],
+        'X-Api-Key': 'de1cf5a8a765861844e71a73a10203f8',
     }
     try:
         response = requests.get(url_rates, headers=headers)
@@ -43,14 +43,14 @@ def get_rates_data_single(rate_ticker, start_time, end_time):
 
 
 def get_data_main():
-    start_date = datetime.datetime(2024, 4, 3)
-    end_date = datetime.datetime(2024, 10, 10)
+    start_date = datetime.datetime(2024, 12, 3)
+    end_date = datetime.datetime(2024, 12, 10)
     start_date_list = [start_date + datetime.timedelta(days=i) for i in range((end_date - start_date).days + 1)]
     end_date_list = [date + datetime.timedelta(days=1) for date in start_date_list]
     start_date_list = [date.strftime('%Y-%m-%dT%H:%M:%S.000Z') for date in start_date_list]
     end_date_list = [date.strftime('%Y-%m-%dT%H:%M:%S.000Z') for date in end_date_list]
 
-    rate_ticker = 'KK_BRR_BTCUSD_1S'
+    rate_ticker = 'KK_RFR_BNBUSD'
 
     with ThreadPoolExecutor(max_workers=3) as executor:
         results = list(executor.map(get_rates_data_single, repeat(rate_ticker), start_date_list, end_date_list))
@@ -59,6 +59,8 @@ def get_data_main():
 
 
 if __name__ == '__main__':
-    rate_ticker = 'KK_BRR_BTCUSD_1S'
-    get_data_main()
+    rate_ticker = 'KK_RFR_BNBUSD'
+    a = get_data_main()
+    res = pd.concat(a)
+    print(res)
 
