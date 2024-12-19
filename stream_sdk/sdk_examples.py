@@ -95,9 +95,9 @@ def market_update_request(channel: grpc.Channel):
             # Globbing patterns are also supported on all fields. See http://sdk.kaiko.com/#instrument-selection for all supported patterns
             responses = stub.Subscribe(pb_market_update.StreamMarketUpdateRequestV1(
                 instrument_criteria=instrument_criteria_pb2.InstrumentCriteria(
-                    exchange="binc,btmx",
-                    instrument_class="spot",
-                    code="btc-usd,eth-btc,btc-usdt"
+                    exchange="*",
+                    instrument_class="*",
+                    code="*"
                 ),
                 commodities=[pb_commodity.SMUC_TRADE]
             ))
@@ -163,7 +163,7 @@ def run():
     composite_credentials = grpc.composite_channel_credentials(credentials, call_credentials)
     channel = grpc.secure_channel('gateway-v0-grpc.kaiko.ovh', composite_credentials)
 
-    trades_request(channel)
+    # trades_request(channel)
     # ohlcv_request(channel)
     # vwap_request(channel)
     # direct_exchange_rate_request(channel)
@@ -171,7 +171,7 @@ def run():
     # index_request(channel)
     # aggregated_quote_request(channel)
 
-    # market_update_request(channel)
+    market_update_request(channel)
 
 
 if __name__ == '__main__':
