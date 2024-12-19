@@ -15,3 +15,5 @@ env/
 
 # Ignore other potential system or editor files
 .DS_Store
+
+.ipynb_checkpoints/ 
